@@ -23,6 +23,7 @@ import {
   Coins
 } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const [copiedCode, setCopiedCode] = useState("");
@@ -72,12 +73,14 @@ const Index = () => {
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
-              <a href="#docs" className="text-gray-600 hover:text-purple-600 transition-colors">Documentation</a>
+              <Link to="/docs" className="text-gray-600 hover:text-purple-600 transition-colors">Documentation</Link>
               <a href="#services" className="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
-              <a href="#support" className="text-gray-600 hover:text-purple-600 transition-colors">Support</a>
-              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
-                Join Network <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Link to="/about" className="text-gray-600 hover:text-purple-600 transition-colors">About Us</Link>
+              <Link to="/join">
+                <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+                  Join Network <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -99,14 +102,18 @@ const Index = () => {
               using local currencies, backed by USSD pegged to oil and gold for maximum stability and trust.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
-                <Play className="mr-2 h-5 w-5" />
-                Join the Network
-              </Button>
-              <Button size="lg" variant="outline" className="border-purple-200 hover:bg-purple-50">
-                <BookOpen className="mr-2 h-5 w-5" />
-                View Documentation
-              </Button>
+              <Link to="/join">
+                <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+                  <Play className="mr-2 h-5 w-5" />
+                  Join the Network
+                </Button>
+              </Link>
+              <Link to="/docs">
+                <Button size="lg" variant="outline" className="border-purple-200 hover:bg-purple-50">
+                  <BookOpen className="mr-2 h-5 w-5" />
+                  View Documentation
+                </Button>
+              </Link>
             </div>
             
             {/* Currency Highlight */}
@@ -135,6 +142,64 @@ const Index = () => {
         </div>
         <div className="absolute top-40 right-20 animate-pulse delay-1000">
           <div className="w-12 h-12 bg-blue-200 rounded-lg opacity-20"></div>
+        </div>
+      </section>
+
+      {/* Problem Statement Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-red-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              The Global Payment Crisis
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Current payment systems exclude billions and create dependencies that limit financial sovereignty.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="border-red-200 hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-red-600 flex items-center">
+                  <CreditCard className="mr-2 h-6 w-6" />
+                  Limited Global Coverage
+                </CardTitle>
+                <CardDescription>
+                  <strong>VISA and Mastercard do not work in all multipolar countries</strong>, 
+                  creating payment barriers and limiting international commerce in emerging markets.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>• Restricted access in key multipolar economies</li>
+                  <li>• High fees for cross-border transactions</li>
+                  <li>• Dependency on Western financial infrastructure</li>
+                  <li>• Limited monetary sovereignty for nations</li>
+                </ul>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-red-200 hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-red-600 flex items-center">
+                  <Users className="mr-2 h-6 w-6" />
+                  Financial Exclusion Crisis
+                </CardTitle>
+                <CardDescription>
+                  <strong>More than half of the world's population cannot afford to get a card.</strong> 
+                  Traditional banking services are too expensive for billions of people globally.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li>• High account maintenance fees</li>
+                  <li>• Minimum balance requirements</li>
+                  <li>• Limited access to international payments</li>
+                  <li>• Lack of affordable financial inclusion solutions</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -404,6 +469,15 @@ const Index = () => {
               </Card>
             </TabsContent>
           </Tabs>
+
+          <div className="text-center mt-12">
+            <Link to="/docs">
+              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+                View Complete Documentation
+                <ExternalLink className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -458,10 +532,12 @@ const Index = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
-              Apply for Network Membership
-              <ExternalLink className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to="/join">
+              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+                Apply for Network Membership
+                <ExternalLink className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -495,26 +571,26 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Network</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Join Network</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API Documentation</a></li>
+                <li><Link to="/join" className="hover:text-white transition-colors">Join Network</Link></li>
+                <li><Link to="/docs" className="hover:text-white transition-colors">API Documentation</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Integration Guide</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Support Portal</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-4">USSD Backing</h3>
+              <h3 className="font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Oil Reserves</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Gold Holdings</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Reserve Audits</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Transparency Reports</a></li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><a href="#" className="hover:text-white transition-colors">Leadership</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 MIPS Network. Multipolar International Payment System with USSD backed by oil and gold reserves.</p>
+            <p>&copy; 2024 MIPS Network. Developed by Zakaria Deriche. Multipolar International Payment System with USSD backed by oil and gold reserves.</p>
           </div>
         </div>
       </footer>
