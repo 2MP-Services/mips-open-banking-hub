@@ -16,7 +16,11 @@ import {
   Copy,
   Play,
   Banknote,
-  Network
+  Network,
+  CreditCard,
+  Building,
+  TrendingUp,
+  Coins
 } from "lucide-react";
 import { useState } from "react";
 
@@ -44,7 +48,9 @@ const Index = () => {
       "balance": {
         "amount": "50000.00",
         "currency": "USSD",
-        "usd_equivalent": "50000.00"
+        "usd_equivalent": "50000.00",
+        "oil_backing": "1250.00_barrels",
+        "gold_backing": "25.00_oz"
       },
       "network_status": "active",
       "settlement_bank": "MIPS_CENTRAL_BANK"
@@ -67,7 +73,7 @@ const Index = () => {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
               <a href="#docs" className="text-gray-600 hover:text-purple-600 transition-colors">Documentation</a>
-              <a href="#apis" className="text-gray-600 hover:text-purple-600 transition-colors">APIs</a>
+              <a href="#services" className="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
               <a href="#support" className="text-gray-600 hover:text-purple-600 transition-colors">Support</a>
               <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
                 Join Network <ArrowRight className="ml-2 h-4 w-4" />
@@ -82,15 +88,15 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <Badge className="mb-4 bg-purple-100 text-purple-700 hover:bg-purple-200">
-              🌐 Revolutionary Payment Network: MIPS with USSD Base Currency
+              🌐 Multipolar International Payment System with USSD Base Currency
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              The Next Generation
-              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"> Payment Network</span>
+              Multipolar International
+              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"> Payment System</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              MIPS (Multilateral Interbank Payment System) is a revolutionary payment network infrastructure, 
-              comparable to SWIFT and BRICS, powered by USSD as the universal base currency for seamless global transactions.
+              MIPS (Multipolar International Payment System) enables seamless cross-border transactions between countries 
+              using local currencies, backed by USSD pegged to oil and gold for maximum stability and trust.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
@@ -104,15 +110,20 @@ const Index = () => {
             </div>
             
             {/* Currency Highlight */}
-            <div className="flex justify-center items-center space-x-4 text-sm text-gray-600">
+            <div className="flex justify-center items-center space-x-6 text-sm text-gray-600">
               <div className="flex items-center space-x-2">
                 <Banknote className="h-5 w-5 text-purple-600" />
                 <span>Base Currency: <strong className="text-purple-600">USSD</strong></span>
               </div>
               <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
               <div className="flex items-center space-x-2">
+                <TrendingUp className="h-5 w-5 text-yellow-600" />
+                <span>Backed by: <strong className="text-yellow-600">Oil & Gold</strong></span>
+              </div>
+              <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+              <div className="flex items-center space-x-2">
                 <Network className="h-5 w-5 text-blue-600" />
-                <span>Network Standard: <strong className="text-blue-600">MIPS Protocol</strong></span>
+                <span>System: <strong className="text-blue-600">Multipolar</strong></span>
               </div>
             </div>
           </div>
@@ -127,51 +138,42 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Network Comparison Section */}
+      {/* USSD Backing Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              MIPS: The New Global Payment Standard
+              USSD: Stability Through Real Assets
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Joining the ranks of SWIFT and BRICS as a major payment network infrastructure
+              Our Universal Stable Settlement Dollar (USSD) is backed by physical oil and gold reserves, 
+              providing unparalleled stability for international settlements.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-gray-200 hover:shadow-lg transition-shadow">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="border-yellow-200 hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-gray-600">S</span>
+                <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle>SWIFT</CardTitle>
+                <CardTitle className="text-yellow-600">Oil Backing</CardTitle>
                 <CardDescription>
-                  Global financial messaging network serving traditional banking with USD/EUR dominance since 1973.
+                  50% of USSD reserves are backed by verified oil reserves, providing commodity-based stability 
+                  and protection against traditional currency volatility.
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="border-purple-200 hover:shadow-lg transition-shadow ring-2 ring-purple-100">
+            <Card className="border-yellow-200 hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">M</span>
+                <div className="w-16 h-16 bg-gradient-to-r from-yellow-600 to-yellow-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Coins className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle className="text-purple-600">MIPS</CardTitle>
+                <CardTitle className="text-yellow-600">Gold Reserves</CardTitle>
                 <CardDescription>
-                  Next-generation payment network with USSD base currency, designed for modern digital economy and cross-border efficiency.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            
-            <Card className="border-gray-200 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-gray-600">B</span>
-                </div>
-                <CardTitle>BRICS</CardTitle>
-                <CardDescription>
-                  Regional payment system for emerging economies, facilitating trade between Brazil, Russia, India, China, and South Africa.
+                  50% backed by physical gold reserves held in secure vaults across multiple jurisdictions, 
+                  ensuring long-term value preservation and trust.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -184,70 +186,76 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose MIPS Network?
+              Comprehensive Financial Services
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Revolutionary payment infrastructure with USSD base currency for seamless global transactions.
+              Complete payment infrastructure supporting local currencies with USSD settlement backbone.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
-                <Banknote className="h-12 w-12 text-purple-600 mb-4" />
-                <CardTitle>USSD Base Currency</CardTitle>
+                <Building className="h-12 w-12 text-purple-600 mb-4" />
+                <CardTitle>Network Accounts</CardTitle>
                 <CardDescription>
-                  Universal Stable Settlement Dollar (USSD) provides stability and predictability for all network transactions.
+                  Multi-currency accounts for financial institutions with USSD settlement capabilities 
+                  and real-time balance management.
                 </CardDescription>
               </CardHeader>
             </Card>
             
             <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
-                <Network className="h-12 w-12 text-blue-600 mb-4" />
-                <CardTitle>Global Network</CardTitle>
+                <Zap className="h-12 w-12 text-blue-600 mb-4" />
+                <CardTitle>Cross-Border Transactions</CardTitle>
                 <CardDescription>
-                  Connect financial institutions worldwide through our modern, efficient payment messaging infrastructure.
+                  Instant transactions between countries using local currencies with automatic 
+                  USSD settlement and competitive exchange rates.
                 </CardDescription>
               </CardHeader>
             </Card>
             
             <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
-                <Zap className="h-12 w-12 text-purple-600 mb-4" />
-                <CardTitle>Instant Settlement</CardTitle>
+                <Network className="h-12 w-12 text-purple-600 mb-4" />
+                <CardTitle>Real-Time Settlement</CardTitle>
                 <CardDescription>
-                  Real-time gross settlement with USSD base currency enables immediate transaction finality.
+                  24/7 settlement system with USSD base currency ensuring immediate finality 
+                  and reduced counterparty risk.
                 </CardDescription>
               </CardHeader>
             </Card>
             
             <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
-                <Shield className="h-12 w-12 text-blue-600 mb-4" />
-                <CardTitle>Advanced Security</CardTitle>
+                <CreditCard className="h-12 w-12 text-blue-600 mb-4" />
+                <CardTitle>Card Issuing</CardTitle>
                 <CardDescription>
-                  Military-grade encryption and blockchain-based validation ensure maximum transaction security.
+                  Virtual and physical debit/credit cards linked to MIPS accounts with 
+                  global acceptance and multi-currency support.
                 </CardDescription>
               </CardHeader>
             </Card>
             
             <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
-                <Globe className="h-12 w-12 text-purple-600 mb-4" />
-                <CardTitle>Cross-Border Efficiency</CardTitle>
+                <Shield className="h-12 w-12 text-purple-600 mb-4" />
+                <CardTitle>Regulatory Compliance</CardTitle>
                 <CardDescription>
-                  Eliminate correspondent banking delays with direct USSD-based settlement between member institutions.
+                  Full compliance with international financial regulations and local 
+                  banking requirements across all participating countries.
                 </CardDescription>
               </CardHeader>
             </Card>
             
             <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
-                <CheckCircle className="h-12 w-12 text-blue-600 mb-4" />
-                <CardTitle>Regulatory Compliant</CardTitle>
+                <Globe className="h-12 w-12 text-blue-600 mb-4" />
+                <CardTitle>Multipolar Network</CardTitle>
                 <CardDescription>
-                  Built to meet international payment standards and regional regulatory requirements worldwide.
+                  Decentralized payment infrastructure reducing dependency on single-currency 
+                  systems and promoting financial sovereignty.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -263,16 +271,16 @@ const Index = () => {
               MIPS Network API Documentation
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Integrate with the MIPS payment network using our comprehensive APIs with USSD base currency support.
+              Integrate with the MIPS multipolar payment system using our comprehensive APIs.
             </p>
           </div>
 
           <Tabs defaultValue="accounts" className="w-full">
             <TabsList className="grid w-full grid-cols-4 mb-8">
-              <TabsTrigger value="accounts">Network Accounts</TabsTrigger>
-              <TabsTrigger value="payments">USSD Payments</TabsTrigger>
+              <TabsTrigger value="accounts">Accounts</TabsTrigger>
+              <TabsTrigger value="transactions">Transactions</TabsTrigger>
               <TabsTrigger value="settlement">Settlement</TabsTrigger>
-              <TabsTrigger value="rates">Exchange Rates</TabsTrigger>
+              <TabsTrigger value="cards">Card Services</TabsTrigger>
             </TabsList>
             
             <TabsContent value="accounts">
@@ -281,10 +289,10 @@ const Index = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Code className="mr-2 h-5 w-5" />
-                      Get Network Account Information
+                      Get Account Information
                     </CardTitle>
                     <CardDescription>
-                      Retrieve MIPS network account details with USSD balance information.
+                      Retrieve MIPS network account details with USSD balance and backing information.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -308,7 +316,7 @@ const Index = () => {
                   <CardHeader>
                     <CardTitle>Response Example</CardTitle>
                     <CardDescription>
-                      Structured JSON response with MIPS network account and USSD balance information.
+                      JSON response with account details including oil and gold backing information.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -330,22 +338,22 @@ const Index = () => {
               </div>
             </TabsContent>
             
-            <TabsContent value="payments">
+            <TabsContent value="transactions">
               <Card>
                 <CardHeader>
-                  <CardTitle>USSD Payment Initiation</CardTitle>
+                  <CardTitle>Cross-Border Payments</CardTitle>
                   <CardDescription>
-                    Initiate secure payments using USSD base currency through the MIPS network.
+                    Initiate payments between countries using local currencies with USSD settlement.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
                       <Badge variant="secondary">POST</Badge>
-                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/payments/ussd</code>
+                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/transactions/cross-border</code>
                     </div>
                     <p className="text-gray-600">
-                      Create instant or scheduled USSD payments with automatic currency conversion and network validation.
+                      Send payments in local currency with automatic USSD conversion and settlement.
                     </p>
                   </div>
                 </CardContent>
@@ -355,41 +363,41 @@ const Index = () => {
             <TabsContent value="settlement">
               <Card>
                 <CardHeader>
-                  <CardTitle>Network Settlement</CardTitle>
+                  <CardTitle>USSD Settlement</CardTitle>
                   <CardDescription>
-                    Real-time gross settlement through MIPS network using USSD base currency.
+                    Real-time settlement system using USSD backed by oil and gold reserves.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
                       <Badge variant="secondary">GET</Badge>
-                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/settlement/status</code>
+                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/settlement/ussd</code>
                     </div>
                     <p className="text-gray-600">
-                      Monitor settlement status and access detailed transaction data with real-time USSD conversion rates.
+                      Monitor settlement status with real-time backing verification and reserve audits.
                     </p>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
             
-            <TabsContent value="rates">
+            <TabsContent value="cards">
               <Card>
                 <CardHeader>
-                  <CardTitle>USSD Exchange Rates</CardTitle>
+                  <CardTitle>Card Issuing Services</CardTitle>
                   <CardDescription>
-                    Real-time exchange rates between USSD and other currencies in the MIPS network.
+                    Issue virtual and physical cards linked to MIPS accounts with global acceptance.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
-                      <Badge variant="secondary">GET</Badge>
-                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/rates/ussd</code>
+                      <Badge variant="secondary">POST</Badge>
+                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/cards/issue</code>
                     </div>
                     <p className="text-gray-600">
-                      Access current USSD exchange rates and historical data for accurate payment processing and settlement.
+                      Create virtual or physical cards with multi-currency support and USSD settlement.
                     </p>
                   </div>
                 </CardContent>
@@ -399,15 +407,15 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Getting Started Section */}
-      <section id="apis" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50">
+      {/* Services Section */}
+      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Join the MIPS Network
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Connect your financial institution to the global MIPS payment network in three simple steps.
+              Connect your financial institution to the multipolar payment infrastructure.
             </p>
           </div>
           
@@ -419,7 +427,7 @@ const Index = () => {
                 </div>
                 <CardTitle>Network Registration</CardTitle>
                 <CardDescription>
-                  Register your financial institution and obtain MIPS network credentials and USSD settlement account.
+                  Register your institution and establish MIPS connectivity with USSD settlement capabilities.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -429,9 +437,9 @@ const Index = () => {
                 <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
                   2
                 </div>
-                <CardTitle>Integration Testing</CardTitle>
+                <CardTitle>Integration & Testing</CardTitle>
                 <CardDescription>
-                  Test USSD payments and settlements in our comprehensive sandbox environment with simulated network traffic.
+                  Test cross-border payments, card issuing, and settlement in our sandbox environment.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -443,7 +451,7 @@ const Index = () => {
                 </div>
                 <CardTitle>Go Live</CardTitle>
                 <CardDescription>
-                  Launch on the MIPS network with full USSD payment capabilities and global settlement access.
+                  Launch with full MIPS capabilities including local currency transactions and USSD settlement.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -470,43 +478,43 @@ const Index = () => {
                 <span className="text-xl font-bold">MIPS Network</span>
               </div>
               <p className="text-gray-400">
-                Revolutionary payment network infrastructure with USSD base currency for the future of global finance.
+                Multipolar International Payment System enabling cross-border transactions with USSD backed by oil and gold.
               </p>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold mb-4">Services</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Network Accounts</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Cross-Border Payments</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Card Issuing</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">USSD Settlement</a></li>
+              </ul>
             </div>
             
             <div>
               <h3 className="font-semibold mb-4">Network</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Network Standards</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">USSD Documentation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Settlement Guide</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API Reference</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Membership</h3>
-              <ul className="space-y-2 text-gray-400">
                 <li><a href="#" className="hover:text-white transition-colors">Join Network</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Member Benefits</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Certification</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">API Documentation</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Integration Guide</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Support Portal</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-4">Legal & Compliance</h3>
+              <h3 className="font-semibold mb-4">USSD Backing</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Network Rules</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Compliance Framework</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security Standards</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Oil Reserves</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Gold Holdings</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Reserve Audits</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Transparency Reports</a></li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 MIPS Network. All rights reserved. Global Payment Network Infrastructure with USSD Base Currency.</p>
+            <p>&copy; 2024 MIPS Network. Multipolar International Payment System with USSD backed by oil and gold reserves.</p>
           </div>
         </div>
       </footer>
