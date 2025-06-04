@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +19,10 @@ import {
   CreditCard,
   Building,
   TrendingUp,
-  Coins
+  Coins,
+  ArrowDown,
+  ArrowRightLeft,
+  Clock
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -73,6 +75,7 @@ const Index = () => {
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
+              <a href="#how-it-works" className="text-gray-600 hover:text-purple-600 transition-colors">How It Works</a>
               <Link to="/docs" className="text-gray-600 hover:text-purple-600 transition-colors">Documentation</Link>
               <a href="#services" className="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
               <Link to="/about" className="text-gray-600 hover:text-purple-600 transition-colors">About Us</Link>
@@ -242,6 +245,244 @@ const Index = () => {
                 </CardDescription>
               </CardHeader>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              How MIPS Network Works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover how countries join the MIPS network and enable seamless cross-border payments 
+              using USSD tokens backed by oil and gold reserves.
+            </p>
+          </div>
+
+          {/* USSD Tokens Explanation */}
+          <div className="mb-16">
+            <Card className="border-blue-200 bg-blue-50">
+              <CardHeader className="text-center">
+                <CardTitle className="text-blue-700 flex items-center justify-center">
+                  <Coins className="mr-2 h-6 w-6" />
+                  What are USSD Tokens?
+                </CardTitle>
+                <CardDescription className="text-lg">
+                  USSD tokens are digital representations of local currencies within the MIPS network. 
+                  Each participating country receives a unique USSD token (e.g., USSD-ZAR for South Africa, USSD-CNY for China) 
+                  that maintains a stable peg to their local currency while being backed by oil and gold reserves.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+
+          {/* Step-by-Step Process */}
+          <div className="space-y-12">
+            {/* Step 1 */}
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              <div className="lg:w-1/2">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                    1
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Country Network Joining</h3>
+                </div>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  South Africa joins the MIPS network by establishing connectivity with the system. 
+                  Upon joining, South Africa receives a dedicated <strong>USSD-ZAR token</strong> that represents 
+                  their local currency (South African Rand) within the network. This token maintains a 1:1 peg 
+                  with ZAR while being backed by oil and gold reserves.
+                </p>
+              </div>
+              <div className="lg:w-1/2">
+                <Card className="border-purple-200">
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-purple-600">
+                      <Globe className="mr-2 h-5 w-5" />
+                      South Africa Joins MIPS
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500" />
+                        <span>Network registration completed</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500" />
+                        <span>USSD-ZAR token assigned</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500" />
+                        <span>1:1 peg with ZAR established</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500" />
+                        <span>Oil & gold backing activated</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <ArrowDown className="h-8 w-8 text-purple-400" />
+            </div>
+
+            {/* Step 2 */}
+            <div className="flex flex-col lg:flex-row-reverse items-center gap-8">
+              <div className="lg:w-1/2">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                    2
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Daily Banking Operations</h3>
+                </div>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  South African citizens and businesses use their USSD-ZAR tokens for everyday banking operations. 
+                  They can make local payments, receive salaries, pay bills, and conduct all regular banking 
+                  activities using their USSD balance. The system operates seamlessly with existing banking 
+                  infrastructure while providing enhanced stability through oil and gold backing.
+                </p>
+              </div>
+              <div className="lg:w-1/2">
+                <Card className="border-green-200">
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-green-600">
+                      <Banknote className="mr-2 h-5 w-5" />
+                      Everyday Banking with USSD-ZAR
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2">
+                        <CreditCard className="h-5 w-5 text-blue-500" />
+                        <span>Local payments & transfers</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Building className="h-5 w-5 text-blue-500" />
+                        <span>Salary deposits & bill payments</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Shield className="h-5 w-5 text-blue-500" />
+                        <span>Enhanced stability through backing</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Network className="h-5 w-5 text-blue-500" />
+                        <span>Seamless integration with banks</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <ArrowDown className="h-8 w-8 text-purple-400" />
+            </div>
+
+            {/* Step 3 */}
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              <div className="lg:w-1/2">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                    3
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Cross-Border Payment Example</h3>
+                </div>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  When South Africa needs to pay China for goods or services, the transaction flows through 
+                  the MIPS network. China has its own <strong>USSD-CNY token</strong> pegged to the Chinese Yuan. 
+                  The South African payer uses ZAR from their account, which is converted to USSD-ZAR tokens 
+                  and then exchanged for USSD-CNY tokens based on real-time rates, before being delivered 
+                  as CNY to the Chinese recipient.
+                </p>
+              </div>
+              <div className="lg:w-1/2">
+                <Card className="border-orange-200">
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-orange-600">
+                      <ArrowRightLeft className="mr-2 h-5 w-5" />
+                      South Africa → China Payment Flow
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                        <span className="font-medium">South Africa</span>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm bg-blue-100 px-2 py-1 rounded">ZAR</span>
+                          <ArrowRight className="h-4 w-4" />
+                          <span className="text-sm bg-purple-100 px-2 py-1 rounded">USSD-ZAR</span>
+                        </div>
+                      </div>
+                      <div className="flex justify-center">
+                        <ArrowDown className="h-5 w-5 text-gray-400" />
+                      </div>
+                      <div className="text-center p-2 bg-yellow-50 rounded-lg">
+                        <span className="text-sm font-medium">Real-time USSD Exchange</span>
+                      </div>
+                      <div className="flex justify-center">
+                        <ArrowDown className="h-5 w-5 text-gray-400" />
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                        <span className="font-medium">China</span>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm bg-purple-100 px-2 py-1 rounded">USSD-CNY</span>
+                          <ArrowRight className="h-4 w-4" />
+                          <span className="text-sm bg-red-100 px-2 py-1 rounded">CNY</span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+
+          {/* Benefits Section */}
+          <div className="mt-20">
+            <h3 className="text-2xl font-bold text-gray-900 text-center mb-12">
+              Key Benefits of MIPS Network
+            </h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="border-green-200 text-center">
+                <CardHeader>
+                  <TrendingUp className="h-12 w-12 text-green-600 mx-auto mb-4" />
+                  <CardTitle className="text-green-600">Reduced Costs</CardTitle>
+                  <CardDescription>
+                    Eliminate traditional correspondent banking fees and reduce cross-border 
+                    transaction costs by up to 80% through direct USSD token exchanges.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="border-blue-200 text-center">
+                <CardHeader>
+                  <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                  <CardTitle className="text-blue-600">Instant Settlement</CardTitle>
+                  <CardDescription>
+                    Real-time cross-border payments and settlements 24/7, eliminating the 
+                    traditional 3-5 day waiting periods for international transfers.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="border-purple-200 text-center">
+                <CardHeader>
+                  <Banknote className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                  <CardTitle className="text-purple-600">Local Currency Focus</CardTitle>
+                  <CardDescription>
+                    Maintain monetary sovereignty by using local currencies for transactions 
+                    while benefiting from USSD's oil and gold-backed stability.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
