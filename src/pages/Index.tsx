@@ -14,7 +14,9 @@ import {
   CheckCircle,
   ExternalLink,
   Copy,
-  Play
+  Play,
+  Banknote,
+  Network
 } from "lucide-react";
 import { useState } from "react";
 
@@ -27,45 +29,48 @@ const Index = () => {
     setTimeout(() => setCopiedCode(""), 2000);
   };
 
-  const apiExample = `curl -X GET "https://api.mips.my/v1/accounts" \\
+  const apiExample = `curl -X GET "https://api.mips.network/v1/accounts" \\
   -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \\
-  -H "Content-Type: application/json"`;
+  -H "Content-Type: application/json" \\
+  -H "Currency: USSD"`;
 
   const responseExample = `{
   "accounts": [
     {
-      "account_id": "acc_123456789",
-      "bank_code": "MBBEMYKL",
+      "account_id": "mips_acc_123456789",
+      "network_code": "MIPSUSSD",
       "account_number": "1234567890",
-      "account_type": "savings",
+      "account_type": "settlement",
       "balance": {
-        "amount": "15000.00",
-        "currency": "MYR"
+        "amount": "50000.00",
+        "currency": "USSD",
+        "usd_equivalent": "50000.00"
       },
-      "status": "active"
+      "network_status": "active",
+      "settlement_bank": "MIPS_CENTRAL_BANK"
     }
   ]
 }`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
       {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md border-b border-blue-100 sticky top-0 z-50">
+      <nav className="bg-white/80 backdrop-blur-md border-b border-purple-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">M</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">MIPS Open Banking</span>
+              <span className="text-xl font-bold text-gray-900">MIPS Network</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
-              <a href="#docs" className="text-gray-600 hover:text-blue-600 transition-colors">Documentation</a>
-              <a href="#apis" className="text-gray-600 hover:text-blue-600 transition-colors">APIs</a>
-              <a href="#support" className="text-gray-600 hover:text-blue-600 transition-colors">Support</a>
-              <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
-                Get Started <ArrowRight className="ml-2 h-4 w-4" />
+              <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
+              <a href="#docs" className="text-gray-600 hover:text-purple-600 transition-colors">Documentation</a>
+              <a href="#apis" className="text-gray-600 hover:text-purple-600 transition-colors">APIs</a>
+              <a href="#support" className="text-gray-600 hover:text-purple-600 transition-colors">Support</a>
+              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+                Join Network <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -76,108 +81,173 @@ const Index = () => {
       <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <Badge className="mb-4 bg-blue-100 text-blue-700 hover:bg-blue-200">
-              🚀 Now Live: MIPS Open Banking API v2.0
+            <Badge className="mb-4 bg-purple-100 text-purple-700 hover:bg-purple-200">
+              🌐 Revolutionary Payment Network: MIPS with USSD Base Currency
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Build the Future of
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent"> Banking</span>
+              The Next Generation
+              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"> Payment Network</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Connect to Malaysia's premier interbank payment system. Access real-time account data, 
-              initiate payments, and create innovative financial solutions with MIPS Open Banking APIs.
+              MIPS (Multilateral Interbank Payment System) is a revolutionary payment network infrastructure, 
+              comparable to SWIFT and BRICS, powered by USSD as the universal base currency for seamless global transactions.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
                 <Play className="mr-2 h-5 w-5" />
-                Start Building
+                Join the Network
               </Button>
-              <Button size="lg" variant="outline" className="border-blue-200 hover:bg-blue-50">
+              <Button size="lg" variant="outline" className="border-purple-200 hover:bg-purple-50">
                 <BookOpen className="mr-2 h-5 w-5" />
                 View Documentation
               </Button>
+            </div>
+            
+            {/* Currency Highlight */}
+            <div className="flex justify-center items-center space-x-4 text-sm text-gray-600">
+              <div className="flex items-center space-x-2">
+                <Banknote className="h-5 w-5 text-purple-600" />
+                <span>Base Currency: <strong className="text-purple-600">USSD</strong></span>
+              </div>
+              <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+              <div className="flex items-center space-x-2">
+                <Network className="h-5 w-5 text-blue-600" />
+                <span>Network Standard: <strong className="text-blue-600">MIPS Protocol</strong></span>
+              </div>
             </div>
           </div>
         </div>
         
         {/* Floating Cards Animation */}
         <div className="absolute top-20 left-10 animate-pulse">
-          <div className="w-16 h-16 bg-blue-200 rounded-lg opacity-20"></div>
+          <div className="w-16 h-16 bg-purple-200 rounded-lg opacity-20"></div>
         </div>
         <div className="absolute top-40 right-20 animate-pulse delay-1000">
-          <div className="w-12 h-12 bg-cyan-200 rounded-lg opacity-20"></div>
+          <div className="w-12 h-12 bg-blue-200 rounded-lg opacity-20"></div>
+        </div>
+      </section>
+
+      {/* Network Comparison Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              MIPS: The New Global Payment Standard
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Joining the ranks of SWIFT and BRICS as a major payment network infrastructure
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="border-gray-200 hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-gray-600">S</span>
+                </div>
+                <CardTitle>SWIFT</CardTitle>
+                <CardDescription>
+                  Global financial messaging network serving traditional banking with USD/EUR dominance since 1973.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            
+            <Card className="border-purple-200 hover:shadow-lg transition-shadow ring-2 ring-purple-100">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-white">M</span>
+                </div>
+                <CardTitle className="text-purple-600">MIPS</CardTitle>
+                <CardDescription>
+                  Next-generation payment network with USSD base currency, designed for modern digital economy and cross-border efficiency.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            
+            <Card className="border-gray-200 hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-gray-600">B</span>
+                </div>
+                <CardTitle>BRICS</CardTitle>
+                <CardDescription>
+                  Regional payment system for emerging economies, facilitating trade between Brazil, Russia, India, China, and South Africa.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose MIPS Open Banking?
+              Why Choose MIPS Network?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Industry-leading security, reliability, and developer experience for Malaysian financial services.
+              Revolutionary payment infrastructure with USSD base currency for seamless global transactions.
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-blue-100 hover:shadow-lg transition-shadow">
+            <Card className="border-purple-100 hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <Banknote className="h-12 w-12 text-purple-600 mb-4" />
+                <CardTitle>USSD Base Currency</CardTitle>
+                <CardDescription>
+                  Universal Stable Settlement Dollar (USSD) provides stability and predictability for all network transactions.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            
+            <Card className="border-purple-100 hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <Network className="h-12 w-12 text-blue-600 mb-4" />
+                <CardTitle>Global Network</CardTitle>
+                <CardDescription>
+                  Connect financial institutions worldwide through our modern, efficient payment messaging infrastructure.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            
+            <Card className="border-purple-100 hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <Zap className="h-12 w-12 text-purple-600 mb-4" />
+                <CardTitle>Instant Settlement</CardTitle>
+                <CardDescription>
+                  Real-time gross settlement with USSD base currency enables immediate transaction finality.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            
+            <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
                 <Shield className="h-12 w-12 text-blue-600 mb-4" />
-                <CardTitle>Bank-Grade Security</CardTitle>
+                <CardTitle>Advanced Security</CardTitle>
                 <CardDescription>
-                  Enterprise-level encryption, OAuth 2.0, and PCI DSS compliance ensure your data is always protected.
+                  Military-grade encryption and blockchain-based validation ensure maximum transaction security.
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="border-blue-100 hover:shadow-lg transition-shadow">
+            <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
-                <Zap className="h-12 w-12 text-cyan-600 mb-4" />
-                <CardTitle>Real-Time Processing</CardTitle>
+                <Globe className="h-12 w-12 text-purple-600 mb-4" />
+                <CardTitle>Cross-Border Efficiency</CardTitle>
                 <CardDescription>
-                  Instant account verification, real-time balance checks, and immediate payment processing.
+                  Eliminate correspondent banking delays with direct USSD-based settlement between member institutions.
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="border-blue-100 hover:shadow-lg transition-shadow">
+            <Card className="border-purple-100 hover:shadow-lg transition-shadow">
               <CardHeader>
-                <Globe className="h-12 w-12 text-blue-600 mb-4" />
-                <CardTitle>Nationwide Coverage</CardTitle>
-                <CardDescription>
-                  Connect to all major Malaysian banks and financial institutions through a single API.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            
-            <Card className="border-blue-100 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Code className="h-12 w-12 text-cyan-600 mb-4" />
-                <CardTitle>Developer-First</CardTitle>
-                <CardDescription>
-                  Comprehensive SDKs, interactive documentation, and sandbox environment for rapid development.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            
-            <Card className="border-blue-100 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <Users className="h-12 w-12 text-blue-600 mb-4" />
-                <CardTitle>24/7 Support</CardTitle>
-                <CardDescription>
-                  Dedicated technical support team and comprehensive documentation to help you succeed.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-            
-            <Card className="border-blue-100 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CheckCircle className="h-12 w-12 text-cyan-600 mb-4" />
+                <CheckCircle className="h-12 w-12 text-blue-600 mb-4" />
                 <CardTitle>Regulatory Compliant</CardTitle>
                 <CardDescription>
-                  Fully compliant with Bank Negara Malaysia regulations and international banking standards.
+                  Built to meet international payment standards and regional regulatory requirements worldwide.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -186,23 +256,23 @@ const Index = () => {
       </section>
 
       {/* API Documentation Section */}
-      <section id="docs" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section id="docs" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Interactive API Documentation
+              MIPS Network API Documentation
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Explore our APIs with live examples and comprehensive guides.
+              Integrate with the MIPS payment network using our comprehensive APIs with USSD base currency support.
             </p>
           </div>
 
           <Tabs defaultValue="accounts" className="w-full">
             <TabsList className="grid w-full grid-cols-4 mb-8">
-              <TabsTrigger value="accounts">Accounts</TabsTrigger>
-              <TabsTrigger value="payments">Payments</TabsTrigger>
-              <TabsTrigger value="transactions">Transactions</TabsTrigger>
-              <TabsTrigger value="webhooks">Webhooks</TabsTrigger>
+              <TabsTrigger value="accounts">Network Accounts</TabsTrigger>
+              <TabsTrigger value="payments">USSD Payments</TabsTrigger>
+              <TabsTrigger value="settlement">Settlement</TabsTrigger>
+              <TabsTrigger value="rates">Exchange Rates</TabsTrigger>
             </TabsList>
             
             <TabsContent value="accounts">
@@ -211,10 +281,10 @@ const Index = () => {
                   <CardHeader>
                     <CardTitle className="flex items-center">
                       <Code className="mr-2 h-5 w-5" />
-                      Get Account Information
+                      Get Network Account Information
                     </CardTitle>
                     <CardDescription>
-                      Retrieve account details, balances, and metadata for connected accounts.
+                      Retrieve MIPS network account details with USSD balance information.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -238,7 +308,7 @@ const Index = () => {
                   <CardHeader>
                     <CardTitle>Response Example</CardTitle>
                     <CardDescription>
-                      Structured JSON response with account information.
+                      Structured JSON response with MIPS network account and USSD balance information.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -263,63 +333,63 @@ const Index = () => {
             <TabsContent value="payments">
               <Card>
                 <CardHeader>
-                  <CardTitle>Payment Initiation</CardTitle>
+                  <CardTitle>USSD Payment Initiation</CardTitle>
                   <CardDescription>
-                    Initiate secure payments between accounts with full transaction tracking.
+                    Initiate secure payments using USSD base currency through the MIPS network.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
                       <Badge variant="secondary">POST</Badge>
-                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/payments</code>
+                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/payments/ussd</code>
                     </div>
                     <p className="text-gray-600">
-                      Create instant or scheduled payments with automatic validation and compliance checks.
+                      Create instant or scheduled USSD payments with automatic currency conversion and network validation.
                     </p>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
             
-            <TabsContent value="transactions">
+            <TabsContent value="settlement">
               <Card>
                 <CardHeader>
-                  <CardTitle>Transaction History</CardTitle>
+                  <CardTitle>Network Settlement</CardTitle>
                   <CardDescription>
-                    Access detailed transaction history with filtering and pagination.
+                    Real-time gross settlement through MIPS network using USSD base currency.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
                       <Badge variant="secondary">GET</Badge>
-                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/transactions</code>
+                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/settlement/status</code>
                     </div>
                     <p className="text-gray-600">
-                      Retrieve comprehensive transaction data with real-time updates and rich metadata.
+                      Monitor settlement status and access detailed transaction data with real-time USSD conversion rates.
                     </p>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
             
-            <TabsContent value="webhooks">
+            <TabsContent value="rates">
               <Card>
                 <CardHeader>
-                  <CardTitle>Webhook Integration</CardTitle>
+                  <CardTitle>USSD Exchange Rates</CardTitle>
                   <CardDescription>
-                    Real-time notifications for account changes and transaction updates.
+                    Real-time exchange rates between USSD and other currencies in the MIPS network.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
-                      <Badge variant="secondary">POST</Badge>
-                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/webhooks</code>
+                      <Badge variant="secondary">GET</Badge>
+                      <code className="text-sm bg-gray-100 px-2 py-1 rounded">/v1/rates/ussd</code>
                     </div>
                     <p className="text-gray-600">
-                      Configure secure webhook endpoints to receive instant notifications about account activities.
+                      Access current USSD exchange rates and historical data for accurate payment processing and settlement.
                     </p>
                   </div>
                 </CardContent>
@@ -330,58 +400,58 @@ const Index = () => {
       </section>
 
       {/* Getting Started Section */}
-      <section id="apis" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="apis" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Get Started in Minutes
+              Join the MIPS Network
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Follow these simple steps to integrate MIPS Open Banking into your application.
+              Connect your financial institution to the global MIPS payment network in three simple steps.
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center border-blue-100">
+            <Card className="text-center border-purple-100">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
                   1
                 </div>
-                <CardTitle>Register Your App</CardTitle>
+                <CardTitle>Network Registration</CardTitle>
                 <CardDescription>
-                  Create your developer account and register your application to get API credentials.
+                  Register your financial institution and obtain MIPS network credentials and USSD settlement account.
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="text-center border-blue-100">
+            <Card className="text-center border-purple-100">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
                   2
                 </div>
-                <CardTitle>Test in Sandbox</CardTitle>
+                <CardTitle>Integration Testing</CardTitle>
                 <CardDescription>
-                  Use our comprehensive sandbox environment to test your integration with sample data.
+                  Test USSD payments and settlements in our comprehensive sandbox environment with simulated network traffic.
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="text-center border-blue-100">
+            <Card className="text-center border-purple-100">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
                   3
                 </div>
                 <CardTitle>Go Live</CardTitle>
                 <CardDescription>
-                  Deploy your application with confidence using our production-ready APIs.
+                  Launch on the MIPS network with full USSD payment capabilities and global settlement access.
                 </CardDescription>
               </CardHeader>
             </Card>
           </div>
           
           <div className="text-center mt-12">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
-              Start Your Integration
+            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+              Apply for Network Membership
               <ExternalLink className="ml-2 h-5 w-5" />
             </Button>
           </div>
@@ -394,49 +464,49 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">M</span>
                 </div>
-                <span className="text-xl font-bold">MIPS Open Banking</span>
+                <span className="text-xl font-bold">MIPS Network</span>
               </div>
               <p className="text-gray-400">
-                Empowering Malaysian fintech innovation through secure, reliable open banking APIs.
+                Revolutionary payment network infrastructure with USSD base currency for the future of global finance.
               </p>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-4">Documentation</h3>
+              <h3 className="font-semibold mb-4">Network</h3>
               <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Network Standards</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">USSD Documentation</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Settlement Guide</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">API Reference</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Guides</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">SDKs</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Sandbox</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-4">Support</h3>
+              <h3 className="font-semibold mb-4">Membership</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Status Page</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Join Network</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Member Benefits</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Certification</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Support Portal</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
+              <h3 className="font-semibold mb-4">Legal & Compliance</h3>
               <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Network Rules</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Compliance</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Compliance Framework</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Security Standards</a></li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 MIPS Open Banking. All rights reserved. Regulated by Bank Negara Malaysia.</p>
+            <p>&copy; 2024 MIPS Network. All rights reserved. Global Payment Network Infrastructure with USSD Base Currency.</p>
           </div>
         </div>
       </footer>
